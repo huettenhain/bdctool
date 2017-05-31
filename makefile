@@ -19,6 +19,7 @@ release: $(SOURCES) $(HEADERS)
 
 clean:
 	-rm $(OBJECTS)
+	-rm *.stackdump
 
 .PHONY: go debug openmp release clean
 
@@ -27,5 +28,4 @@ clean:
 
 target.o: ./targets/$(TARGET).c
 	$(CC) $(CFLAGS) $(DFLAGS) -c -o $@ $< 
-
 
