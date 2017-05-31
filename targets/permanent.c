@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include "../target.h"
 
-//static const int DEGREE = 3;
-//static const int DIMENSION = 9;
+const int DEGREE = 3;
+const int DIMENSION = 9;
 
 const char *VARIABLES[9]
   = {"x11", "x12", "x13", "x21", "x22", "x23", "x31", "x32", "x33"};

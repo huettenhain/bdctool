@@ -6,11 +6,8 @@
 #define Subscript(a,i) a[i]
 #define Power field_pow
 
-//static const int DEGREE;
-//static const int DIMENSION;
-
-#define DEGREE 3
-#define DIMENSION 9
+extern int const DEGREE;
+extern int const DIMENSION;
 
 void __print_constant(FILE* f, char c);
 void __print_variable(FILE* f, int v);
