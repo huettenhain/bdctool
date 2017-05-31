@@ -99,8 +99,8 @@ typedef struct {
     entry **_source;
     entry all_ones_value;
     int candidate_size;
-    entry base[DIMENSION];
-    entry variables[DIMENSION]; /* finite field entries for the 'variables' */
+    entry *base;
+    entry *variables; /* finite field entries for the 'variables' */
     coordinate_t *support; /* position of slots for variables */
     int support_size;  /* number of slots in this matrix */
     int support_alloc; /* number of slots already allocated */
@@ -108,11 +108,11 @@ typedef struct {
     
     /* groupings[v] has all possible subsets of the support which could a
      priori be set to variable v. */
-    grouping_t groupings[DIMENSION];
+    grouping_t *groupings;
 
     // For each variable, the highest index of the variable with the same
     // groupings as v.
-    int groupie[DIMENSION];
+    int *groupie;
 
     int maxplaced;
     TARGET_FUNCTION target;
@@ -168,6 +168,11 @@ void data_free(data *d) {
     }
     free(d->source);
     free(d->_source);
+    free(d->groupie);
+    free(d->groupings);
+    free(d->variables);
+    free(d->base);
+
     memset(d, 0, sizeof(*d));
 }
 
@@ -265,12 +270,22 @@ int data_alloc(data *d, TARGET_FUNCTION t, int n) {
     memset(d, 0, sizeof(*d));
     d->target = t;
     d->candidate_size = n;
-    if (!(d->source  = matrix_create(n)) ||
-        !(d->_source = matrix_create(n)) ){
-        DEBUG_PRINTF("! failed to create source matrix.\n");
+
+
+    if (
+            !(d->base = calloc(DIMENSION,sizeof(*d->base)))
+         || !(d->variables = calloc(DIMENSION,sizeof(*d->variables)))
+         || !(d->groupings = calloc(DIMENSION,sizeof(*d->groupings)))
+         || !(d->groupie = calloc(DIMENSION,sizeof(*d->groupie)))
+         || !(d->source  = matrix_create(n))
+         || !(d->_source = matrix_create(n)) 
+    ){
+        DEBUG_PRINTF("! failed to allocate memory.\n");
         data_free(d);
         return 0;
     }
+
+
     for (v = 0; v < DIMENSION; v++) {
         fill_again: do {
             d->variables[v] = field_reduce(rand() * rand() * rand());
