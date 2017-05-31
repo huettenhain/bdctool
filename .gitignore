@@ -3,3 +3,4 @@ graphs_big
 *.o
 *.exe
 bdctool
+*.stackdump
