@@ -1,3 +1,5 @@
+#ifndef _BINMATRIX_H
+#define _BINMATRIX_H
 
 typedef unsigned long int bitstring;
 
@@ -8,3 +10,5 @@ bitstring *f2_create   (                                    int  n );
 int        f2_entry ( bitstring *b, int i, int j );
 void       f2_print ( bitstring* b, int n );
 int        f2_det   ( bitstring* b, int n );
+
+#endif

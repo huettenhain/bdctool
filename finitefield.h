@@ -1,3 +1,6 @@
+#ifndef _FINITEFIELD_H
+#define _FINITEFIELD_H
+
 #include "binmatrix.h"
 typedef long long int entry;
 
@@ -41,3 +44,4 @@ entry   matrix_per    ( entry **a, int n );
 entry **matrix_create (            int n );
 void    matrix_from_f2( entry **a, bitstring *b, int n );
 
+#endif
