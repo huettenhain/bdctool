@@ -155,16 +155,18 @@ void matrix_data_print(data *d) {
 }
 
 void data_free(data *d) {
-    for (int v = 0; v < DIMENSION; v++) {
-        int s;
-        if (!GROUPING(d,v).size)
-            continue;
-        for (s = 0; s <= GROUPING(d,v).cached; s++) {
-            free(GROUPING(d,v).size[s].entry);
+    if (d->groupings) {
+        for (int v = 0; v < DIMENSION; v++) {
+            int s;
+            if (!GROUPING(d,v).size)
+                continue;
+            for (s = 0; s <= GROUPING(d,v).cached; s++) {
+                free(GROUPING(d,v).size[s].entry);
+            }
+            free(GROUPING(d,v).size);
+            GROUPING(d,v).size = NULL;
+            GROUPING(d,v).cached = 0;
         }
-        free(GROUPING(d,v).size);
-        GROUPING(d,v).size = NULL;
-        GROUPING(d,v).cached = 0;
     }
     free(d->source);
     free(d->_source);
@@ -515,6 +517,9 @@ int main(int argc, char **argv) {
 
     srand(31337);
     ASSERT( sizeof(entry) == 8*sizeof(unsigned char));
+    ASSERT( DIMENSION > 0 );
+    ASSERT( DEGREE > 0 );
+    
     PROGRESS_INIT;
 
 #ifdef _OPENMP
