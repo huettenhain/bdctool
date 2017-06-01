@@ -5,7 +5,7 @@ In the article [Binary Determinantal Complexity](http://dx.doi.org/10.1016/j.laa
 ## How to compile
 
 ### Running Make
-The project has a makefile with the following targets:
+The project has a [makefile](makefile) with the following targets:
 * `debug` (compile with debug information)
 * `release` (compile without debug information)
 * `openmp` (compile with `-fopenmp` for parallelization)
@@ -14,7 +14,7 @@ The project has a makefile with the following targets:
 So in order to simply build `bdctool`, run `make release` or `make openmp` if you want parallelization.
 
 ### Different Polynomials
-By default, bdctool will search for binary variable matrices *A* which satisfiy det(*A*)=per<sub>3</sub>. You can search for a different polynomial `foo` by programming its evaluation routine and placing a file called `foo.c` in the `targets` folder, then compile the project with
+By default, bdctool will search for binary variable matrices *A* which satisfiy det(*A*)=per<sub>3</sub>. You can search for a different polynomial `foo` by programming its evaluation routine and placing a file called [`foo.c`](targets/foo.c) in the [`targets`](targets) folder, then compile the project with
 ```bash
 $ make release TARGET=foo
 ```
