@@ -1,6 +1,6 @@
 # Binary Determinantal Expression Tool
 
-In the article [Binary Determinantal Complexity](http://dx.doi.org/10.1016/j.laa.2016.04.027) (also available as [arXiv:1410.8202](https://arxiv.org/abs/1410.8202)), we prove that for every integer polynomial $f\in\mathbb{Z}[X_1,\ldots,X_n]$, there is a matrix $A\in\{0,1,X_1,\ldots,X_n\}^{d\times d}$ (called a **binary variable matrix**) with $\det(A)=f$. This software can be used together with the software [nauty](http://pallini.di.uniroma1.it/) to compute the matrix $B$ from a given $f$. The tool performs a reasonable, but still slow branch and bound search on all possible variable patterns that are possible for a given matrix $B\in\{0,1\}^{d\times d}$. To find an appropriate matrix $B$, it is sufficient to search the set of all matrices defining bipartite graphs on $d+d$ vertices. For more information on the procedure, please refer to the article itself.
+In the article [Binary Determinantal Complexity](http://dx.doi.org/10.1016/j.laa.2016.04.027) (also available as [arXiv:1410.8202](https://arxiv.org/abs/1410.8202)), we prove that for every integer polynomial *F*&nbsp;∈&nbsp;**ℤ**[*x*<sub>1</sub>,…,*x*<sub>*n*</sub>], there is a matrix *A*&nbsp;∈&nbsp;{0,1,*x*<sub>1</sub>,…,*x*<sub>*n*</sub>}<sup>*d*×*d*</sup> (called a **binary variable matrix**) with det(*A*)=*F*. This software can be used together with the software [nauty](http://pallini.di.uniroma1.it/) to compute the matrix *A* from a given *F*. The tool performs a reasonable, but still slow branch and bound search on all possible variable patterns that are possible for a given matrix *B*&nbsp;∈&nbsp;{0,1}<sup>*d*×*d*</sup>. To find an appropriate matrix *B*, it is sufficient to search the set of all matrices defining bipartite graphs on *d*+*d* vertices. For more information on the procedure, please refer to the article itself.
 
 ## How to compile
 
@@ -14,11 +14,11 @@ The project has a makefile with the following targets:
 So in order to simply build `bdctool`, run `make release` or `make openmp` if you want parallelization.
 
 ### Different Polynomials
-By default, bdctool will search for binary variable matrices $A$ which satisfiy $\det(A)=\operatorname{per}_3$. You can search for a different polynomial `foo` by programming its evaluation routine and placing a file called `foo.c` in the `targets` folder, then compile the project with
+By default, bdctool will search for binary variable matrices A which satisfiy det(A)=per<sub>3</sub>. You can search for a different polynomial `foo` by programming its evaluation routine and placing a file called `foo.c` in the `targets` folder, then compile the project with
 ```bash
 $ make release TARGET=foo
 ```
-Assuming `foo` is the polynomial $x*y+z\in\mathbb{Z}[x,y,z]$, the file `foo.c` should contain the following (see also `target.h`):
+Assuming `foo` is the polynomial *xy*+*z*&nbsp;∈&nbsp;**ℤ**[*x*,*y*,*z*], the file `foo.c` should contain the following (see also `target.h`):
 ```c
 #include <stdio.h>
 #include "../target.h"
@@ -68,14 +68,14 @@ The file `foo.c` has been added to the targets directory for reference.
 
 ## How to verify the results of the paper
 
-After compiling the bdctool with `make release` or `make openmp`, you can verify that there is no $6\times6$ binary variable matrix whose determinant is the $3\times3$ permanent by running
+After compiling the bdctool with `make release` or `make openmp`, you can verify that there is no 6×6 binary variable matrix whose determinant is the 3×3 permanent by running
 ```bash
 $ if [[ -z $(genbg -q -d2:2 -z 6 6 | ./bdctool) ]]
 > then echo 'bdc(per3) > 6';
 > fi
 bdc(per3) > 6
 ```
-To find the $7\times7$ Grenet construction for $\operatorname{per}_3$, run:
+To find the 7×7 Grenet construction for $\operatorname{per}_3$, run:
 ```bash
 $ genbg -q -d2:2 -D3:3 -z 7 7 | ./bdctool
 {{ x11, x12, x13,   0,   0,   0,   0 },
@@ -89,4 +89,4 @@ $ genbg -q -d2:2 -D3:3 -z 7 7 | ./bdctool
 
 ## Limits of the Method
 
-It should be noted that the method is an exponential time search on all possible ways to insert variables in places where a given binary matrix has the entry 1. With substantial effort and time, you can manage to iterate over all $8\times 8$ binary matrices this way, always also depending on the polynomial. I would guess that $9\times 9$ is out of reach, or only possible with a large cluster and a lot of parallelization. 
+It should be noted that the method is an exponential time search on all possible ways to insert variables in places where a given binary matrix has the entry 1. With substantial effort and time, you can manage to iterate over all 8×8 binary matrices this way, always also depending on the polynomial. I would guess that 9×9 is out of reach, or only possible with a large cluster and a lot of parallelization. 
