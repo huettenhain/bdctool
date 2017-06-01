@@ -18,7 +18,7 @@ By default, bdctool will search for binary variable matrices *A* which satisfiy 
 ```bash
 $ make release TARGET=foo
 ```
-Assuming `foo` is the polynomial *xy*+*z*&nbsp;∈&nbsp;**ℤ**[*x*,*y*,*z*], the file `foo.c` should contain the following (see also `target.h`):
+Assuming `foo` is the polynomial *xy*+*z*&nbsp;∈&nbsp;**ℤ**[*x*,*y*,*z*], the file [`foo.c`](targets/foo.c) should contain the following (see also [`target.h`](target.h)):
 ```c
 #include <stdio.h>
 #include "../target.h"
@@ -64,7 +64,7 @@ $ genbg -q -z 3 3 | ./bdctool.exe
  { 1, y, 0 },
  { 0, 1, 1 }}
 ```
-The file `foo.c` has been added to the targets directory for reference.
+The file [`foo.c`](targets/foo.c) has been added to the targets directory for reference.
 
 ## How to verify the results of the paper
 
