@@ -75,7 +75,7 @@ $ if [[ -z $(genbg -q -d2:2 -z 6 6 | ./bdctool) ]]
 > fi
 bdc(per3) > 6
 ```
-To find the 7×7 Grenet construction for $\operatorname{per}_3$, run:
+To find the 7×7 Grenet construction for per<sub>3</sub>, run:
 ```bash
 $ genbg -q -d2:2 -D3:3 -z 7 7 | ./bdctool
 {{ x11, x12, x13,   0,   0,   0,   0 },
