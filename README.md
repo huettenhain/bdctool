@@ -1,6 +1,6 @@
 # Binary Determinantal Expression Tool
 
-In the article [Binary Determinantal Complexity](http://dx.doi.org/10.1016/j.laa.2016.04.027) (also available as [arXiv:1410.8202](https://arxiv.org/abs/1410.8202)), we prove that for every integer polynomial *F*&nbsp;∈&nbsp;**ℤ**[*x*<sub>1</sub>,…,*x*<sub>*n*</sub>], there is a matrix *A*&nbsp;∈&nbsp;{0,1,*x*<sub>1</sub>,…,*x*<sub>*n*</sub>}<sup>*d*×*d*</sup> (called a **binary variable matrix**) with det(*A*)=*F*. This software can be used together with the software [nauty](http://pallini.di.uniroma1.it/) to compute the matrix *A* from a given *F*. The tool performs a reasonable, but still slow branch and bound search on all possible variable patterns that are possible for a given matrix *B*&nbsp;∈&nbsp;{0,1}<sup>*d*×*d*</sup>. To find an appropriate matrix *B*, it is sufficient to search the set of all matrices defining bipartite graphs on *d*+*d* vertices. For more information on the procedure, please refer to the article itself.
+In the article [Binary Determinantal Complexity](http://dx.doi.org/10.1016/j.laa.2016.04.027) (also available as [arXiv:1410.8202](https://arxiv.org/abs/1410.8202)), we prove that for every integer polynomial *F*&nbsp;∈&nbsp;ℤ[*x*<sub>1</sub>,…,*x*<sub>*n*</sub>], there is a matrix *A*&nbsp;∈&nbsp;{0,1,*x*<sub>1</sub>,…,*x*<sub>*n*</sub>}<sup>*d*×*d*</sup> (called a **binary variable matrix**) with det(*A*)=*F*. This software can be used together with the software [nauty](http://pallini.di.uniroma1.it/) to compute the matrix *A* from a given *F*. The tool performs a reasonable, but still slow branch and bound search on all possible variable patterns that are possible for a given matrix *B*&nbsp;∈&nbsp;{0,1}<sup>*d*×*d*</sup>. To find an appropriate matrix *B*, it is sufficient to search the set of all matrices defining bipartite graphs on *d*+*d* vertices. For more information on the procedure, please refer to the article itself.
 
 ## How to compile
 
@@ -18,7 +18,7 @@ By default, bdctool will search for binary variable matrices *A* which satisfiy 
 ```bash
 $ make release TARGET=foo
 ```
-Assuming `foo` is the polynomial *xy*+*z*&nbsp;∈&nbsp;**ℤ**[*x*,*y*,*z*], the file [`foo.c`](targets/foo.c) should contain the following (see also [`target.h`](target.h)):
+Assuming `foo` is the polynomial *xy*+*z*&nbsp;∈&nbsp;ℤ[*x*,*y*,*z*], the file [`foo.c`](targets/foo.c) should contain the following (see also [`target.h`](target.h)):
 ```c
 #include <stdio.h>
 #include "../target.h"
