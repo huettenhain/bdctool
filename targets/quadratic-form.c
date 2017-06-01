@@ -3,8 +3,8 @@
 
 const int FORMDIM = 4;
 
-static const int DEGREE = 3;
-static const int DIMENSION = (((FORMDIM)*(FORMDIM)+3*(FORMDIM))/2);
+const int DEGREE = 3;
+const int DIMENSION = (((FORMDIM)*(FORMDIM)+3*(FORMDIM))/2);
 
 void __print_constant(FILE* f, char c) {
     fprintf(f,"%2c",c); }
